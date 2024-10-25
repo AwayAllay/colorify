@@ -1,0 +1,4 @@
+name: BetterText
+version: '${version}'
+main: com.lukaos187.bettertext.BetterText
+api-version: '1.19'
