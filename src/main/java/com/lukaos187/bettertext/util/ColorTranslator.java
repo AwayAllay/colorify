@@ -17,37 +17,15 @@ public class ColorTranslator {
 
             String part = text[i];
 
-            if (part.startsWith("&#") && part.length() > 7) {
+            if (part.startsWith("&#") && part.length() > 7 && getColor(part) != null) {
                 //&#484848
-                String hexCode = part.substring(1, 8);
-
-
-                if (isValidHexColor(hexCode)) {
-                    finalMessage.append(net.md_5.bungee.api.ChatColor.of(hexCode));
+                    finalMessage.append(getColor(part));
                     finalMessage.append(part.substring(8));
-                }
-                else {
-                    finalMessage.append(part);
-                }
             }
-            else if (part.startsWith("&(")) {
+            else if (part.startsWith("&") && part.length() >= 2 && getColor(part) != null) {
 
-
-
-
-            }
-            else if (part.startsWith("&") && part.length() >= 2) {
-
-                char colorCode = part.charAt(1);
-
-                if (ChatColor.getByChar(colorCode) != null) {
-                    finalMessage.append(ChatColor.getByChar(colorCode));
+                    finalMessage.append(getColor(part));
                     finalMessage.append(part.substring(2));
-                }
-                else {
-                    finalMessage.append(part);
-                }
-
             }
             else {
                 finalMessage.append(part);
@@ -55,7 +33,6 @@ public class ColorTranslator {
         }
 
         return finalMessage.toString();
-
     }
 
     /**Tests if the given color is a valid hexColor.*/
