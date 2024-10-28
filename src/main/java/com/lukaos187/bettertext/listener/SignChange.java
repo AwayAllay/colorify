@@ -15,7 +15,7 @@ public class SignChange implements Listener {
         String[] text = e.getLines();
 
         for (int i = 0; i < text.length; i++) {
-            e.setLine(i, ct.translateChatColor(text[i]));
+            e.setLine(i, ct.translateChatColor(text[i], e.getPlayer()));
         }
 
     }

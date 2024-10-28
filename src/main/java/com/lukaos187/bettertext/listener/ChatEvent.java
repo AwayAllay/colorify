@@ -11,7 +11,7 @@ public class ChatEvent implements Listener {
     public void onPlayerChat(AsyncPlayerChatEvent event){
 
         String message = event.getMessage(); //The message sent form the player
-        event.setMessage(new ColorTranslator().translateChatColor(message));
+        event.setMessage(new ColorTranslator().translateChatColor(message, event.getPlayer()));
 
     }
 }

@@ -20,12 +20,12 @@ public class EditBook implements Listener {
         List<String> coloredContent = new ArrayList<>();
         ColorTranslator ct = new ColorTranslator();
 
-        content.forEach(page -> coloredContent.add(ct.translateChatColor(page)));
+        content.forEach(page -> coloredContent.add(ct.translateChatColor(page, e.getPlayer())));
 
         bookMeta.setPages(coloredContent);
 
         if (bookMeta.hasTitle()){
-            bookMeta.setTitle(ct.translateChatColor(Objects.requireNonNull(bookMeta.getTitle())));
+            bookMeta.setTitle(ct.translateChatColor(Objects.requireNonNull(bookMeta.getTitle()), e.getPlayer()));
         }
 
         e.setNewBookMeta(bookMeta);

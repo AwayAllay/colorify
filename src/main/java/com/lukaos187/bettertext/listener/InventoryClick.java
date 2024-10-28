@@ -1,6 +1,7 @@
 package com.lukaos187.bettertext.listener;
 
 import com.lukaos187.bettertext.util.ColorTranslator;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -24,7 +25,7 @@ public class InventoryClick implements Listener {
                 ItemStack item = e.getCurrentItem();
                 ItemMeta meta = item.getItemMeta();
                 String displayName = meta.getDisplayName(); //get displayName
-                String colorizedName = new ColorTranslator().translateChatColor(displayName); //translate the displayName
+                String colorizedName = new ColorTranslator().translateChatColor(displayName, (Player) e.getWhoClicked()); //translate the displayName
 
                 meta.setDisplayName(colorizedName); //set the new displayName
                 item.setItemMeta(meta); //Set the ItemMeta

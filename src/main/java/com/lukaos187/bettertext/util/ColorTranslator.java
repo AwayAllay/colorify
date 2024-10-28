@@ -1,15 +1,19 @@
 package com.lukaos187.bettertext.util;
 
-import com.lukaos187.bettertext.BetterText;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 
 import javax.annotation.Nullable;
 import java.awt.*;
+import java.util.Objects;
 
 public class ColorTranslator {
 
     /**Translates the colors form the given String with '&' or from hexColors.*/
-    public String translateChatColor(String toColor){
+    public String translateChatColor(String toColor, Player player){
+
+        if (!player.hasPermission("colorify.color"))
+            return toColor;
 
         String[] text = toColor.split("(?=&)");
         StringBuilder finalMessage = new StringBuilder();
@@ -19,14 +23,14 @@ public class ColorTranslator {
             String part = text[i];
 
 
-            if (part.startsWith("&(") && getColor(text[i + 1]) != null && getColor(text[i + 2]) != null) {
+            if (part.startsWith("&(") && i + 2 < text.length && getColor(text[i + 1]) != null && getColor(text[i + 2]) != null) {
 
                 net.md_5.bungee.api.ChatColor color1 = getColor(text[i + 1]);
                 net.md_5.bungee.api.ChatColor color2 = getColor(text[i + 2]);
                 int index = text[i + 2].indexOf(")");
                 String textToTransition = text[i + 2].substring(index + 1);
                 i = i + 2;
-                String transition = transition(textToTransition, color1.getColor(), color2.getColor());
+                String transition = transition(textToTransition, Objects.requireNonNull(color1).getColor(), Objects.requireNonNull(color2).getColor());
                 finalMessage.append(transition);
                 continue;
             }
