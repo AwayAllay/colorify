@@ -8,9 +8,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class BetterText extends JavaPlugin {
 
+    private static BetterText d;
+
     @Override
     public void onEnable() {
         // Plugin startup logic
+        d = this;
         registerListener();
     }
 
@@ -22,4 +25,7 @@ public class BetterText extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new EditBook(), this);
     }
 
+    public static BetterText getD() {
+        return d;
+    }
 }

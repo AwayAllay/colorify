@@ -1,5 +1,6 @@
 package com.lukaos187.bettertext.util;
 
+import com.lukaos187.bettertext.BetterText;
 import org.bukkit.ChatColor;
 
 import javax.annotation.Nullable;
@@ -17,13 +18,25 @@ public class ColorTranslator {
 
             String part = text[i];
 
+
+            if (part.startsWith("&(") && getColor(text[i + 1]) != null && getColor(text[i + 2]) != null) {
+
+                net.md_5.bungee.api.ChatColor color1 = getColor(text[i + 1]);
+                net.md_5.bungee.api.ChatColor color2 = getColor(text[i + 2]);
+                int index = text[i + 2].indexOf(")");
+                String textToTransition = text[i + 2].substring(index + 1);
+                i = i + 2;
+                String transition = transition(textToTransition, color1.getColor(), color2.getColor());
+                finalMessage.append(transition);
+                continue;
+            }
             if (part.startsWith("&#") && part.length() > 7 && getColor(part) != null) {
                 //&#484848
                     finalMessage.append(getColor(part));
                     finalMessage.append(part.substring(8));
             }
             else if (part.startsWith("&") && part.length() >= 2 && getColor(part) != null) {
-
+                //&d, &l, &r...
                     finalMessage.append(getColor(part));
                     finalMessage.append(part.substring(2));
             }
