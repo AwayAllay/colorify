@@ -23,7 +23,7 @@ public class ColorTranslator {
             String part = text[i];
 
 
-            if (part.startsWith("&(") && i + 2 < text.length && getColor(text[i + 1]) != null && getColor(text[i + 2]) != null) {
+            if (part.startsWith("&(") && getColor(text[i + 1]) != null && getColor(text[i + 2]) != null) {
 
                 net.md_5.bungee.api.ChatColor color1 = getColor(text[i + 1]);
                 net.md_5.bungee.api.ChatColor color2 = getColor(text[i + 2]);

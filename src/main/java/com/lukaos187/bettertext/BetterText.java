@@ -19,7 +19,7 @@ public class BetterText extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ChatEvent(), this);
         getServer().getPluginManager().registerEvents(new InventoryClick(), this);
         getServer().getPluginManager().registerEvents(new SignChange(), this);
-        getServer().getPluginManager().registerEvents(new EditBook(), this);
+        //getServer().getPluginManager().registerEvents(new EditBook(), this);
     }
 
 }
