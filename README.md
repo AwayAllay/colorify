@@ -12,7 +12,6 @@
   - Transitions between colors
 
 - **Color all texts such as**:
-  - Books
   - Chat
   - Item names
   - Signs
